@@ -1,3 +1,4 @@
+/*
 package com.practise.codechallenge.dbmodel;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -66,4 +67,4 @@ public class LoginUser implements UserDetails {
     public String getUsername() {
         return username;
     }
-}
+}*/

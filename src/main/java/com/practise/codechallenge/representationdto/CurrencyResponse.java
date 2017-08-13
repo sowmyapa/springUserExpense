@@ -4,17 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ExpenseRequest {
+public class CurrencyResponse {
 
-    private Date expenseDate;
-
-    private String expenseTotal;
-
-    private String expenseReason;
+    private Map<String,Double> rates;
 
 }

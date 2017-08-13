@@ -1,3 +1,4 @@
+/*
 package com.practise.codechallenge.service.impl;
 
 import com.practise.codechallenge.repository.LoginUserRepository;
@@ -17,4 +18,4 @@ public class LoginUserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findOneByUsername(username);
     }
-}
+}*/
