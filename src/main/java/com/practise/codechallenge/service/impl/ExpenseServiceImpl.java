@@ -9,19 +9,19 @@ import com.practise.codechallenge.representationdto.ExpenseRequest;
 import com.practise.codechallenge.representationdto.FaceBookResponse;
 import com.practise.codechallenge.representationdto.OAuthResponse;
 import com.practise.codechallenge.service.ExpenseService;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @Service
@@ -73,6 +73,18 @@ public class ExpenseServiceImpl implements ExpenseService {
 
 
         ResponseEntity<FaceBookResponse> faceBookResponse = restTemplate.exchange("https://graph.facebook.com/v2.5/4", HttpMethod.GET,entity,FaceBookResponse.class);
+
+        Document document = null;
+        try {
+            document = Jsoup.connect("http://en.wikipedia.org/").get();
+            Elements linksOnPage = document.select("#mp-itn b a");
+            String title = linksOnPage.attr("title");
+            System.out.println(linksOnPage);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         User user = userRepository.findOne(userId);
         Expense expense = expenseRepository.findExpenseByUserAndExpenseId(user,expenseId);
         return expense;
